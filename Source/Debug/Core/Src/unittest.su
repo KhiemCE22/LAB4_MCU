@@ -1,0 +1,2 @@
+unittest.c:11:6:unittest_blinky	8	static
+unittest.c:15:6:unittest_button_toggle	8	static

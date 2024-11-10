@@ -1,0 +1,6 @@
+led7_segment.c:11:6:display7SEG	64	static
+led7_segment.c:38:6:clear_all	8	static
+led7_segment.c:46:6:turn_on_1	8	static
+led7_segment.c:54:6:turn_on_2	8	static
+led7_segment.c:61:6:turn_on_3	8	static
+led7_segment.c:68:6:turn_on_4	8	static
