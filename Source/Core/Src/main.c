@@ -22,10 +22,10 @@
 
 /* Private includes ----------------------------------------------------------*/
 /* USER CODE BEGIN Includes */
-#include "unittest.h"
-#include "led7_segment.h"
-#include "software_timer.h"
-#include "traffic_light.h"
+#include "global.h"
+#include "fsm_automatic.h"
+#include "fsm_manual.h"
+#include "fsm_setting.h"
 /* USER CODE END Includes */
 
 /* Private typedef -----------------------------------------------------------*/
@@ -94,8 +94,12 @@ int main(void)
   /* USER CODE BEGIN 2 */
   HAL_TIM_Base_Start_IT(& htim2);
   setTimer(blinky, 500);
-  setTimer(LED7SEG, 250);
-  int turnLed = 1;
+//  setTimer(LED7SEG, 250);
+
+  status = INIT;
+  red_duration = 5; //s
+  green_duration = 3; //s
+  yellow_duration = 2; //s
   /* USER CODE END 2 */
 
   /* Infinite loop */
@@ -108,42 +112,44 @@ int main(void)
 		 setTimer(blinky, 500);
 	 }
 
-	 if (isButtonPress(BT1) || isButtonPress(BT2) || isButtonPress(BT3)){
-		 unittest_button_toggle();
-	 }
-	 if (flag_timer[LED7SEG]){
-		 if (turnLed >= 5)
-			 turnLed = 1;
-		 switch (turnLed) {
-			case 1:
-				turn_on_1();
-				display7SEG(turnLed);
-				light_traffic_redX();
-				light_traffic_redY();
-				break;
-			case 2:
-				turn_on_2();
-				display7SEG(turnLed);
-				light_traffic_greenX();
-				light_traffic_greenY();
-				break;
-			case 3:
-				turn_on_3();
-				display7SEG(turnLed);
-				light_traffic_yellowX();
-				light_traffic_yellowY();
-				break;
-			case 4:
-				turn_on_4();
-				display7SEG(turnLed);
-				break;
-			default:
-				break;
-		}
-		 turnLed ++;
-		 setTimer(LED7SEG, 250);
-	 }
-
+//	 if (isButtonPress(BT1) || isButtonPress(BT2) || isButtonPress(BT3)){
+//		 unittest_button_toggle();
+//	 }
+//	 if (flag_timer[LED7SEG]){
+//		 if (turnLed >= 5)
+//			 turnLed = 1;
+//		 switch (turnLed) {
+//			case 1:
+//				turn_on_1();
+//				display7SEG(turnLed);
+//				light_traffic_redX();
+//				light_traffic_redY();
+//				break;
+//			case 2:
+//				turn_on_2();
+//				display7SEG(turnLed);
+//				light_traffic_greenX();
+//				light_traffic_greenY();
+//				break;
+//			case 3:
+//				turn_on_3();
+//				display7SEG(turnLed);
+//				light_traffic_yellowX();
+//				light_traffic_yellowY();
+//				break;
+//			case 4:
+//				turn_on_4();
+//				display7SEG(turnLed);
+//				break;
+//			default:
+//				break;
+//		}
+//		 turnLed ++;
+//		 setTimer(LED7SEG, 250);
+//	 }
+	 fsm_automatic_run();
+	 fsm_manual_run();
+	 fsm_setting_run();
     /* USER CODE END WHILE */
 
     /* USER CODE BEGIN 3 */

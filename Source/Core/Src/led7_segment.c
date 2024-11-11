@@ -71,3 +71,32 @@ void turn_on_4(){ //7-segment led fourth
 	HAL_GPIO_WritePin(EN3_GPIO_Port, EN3_Pin , SET);
 	HAL_GPIO_WritePin(EN4_GPIO_Port, EN4_Pin , RESET);
 }
+
+void display7SEG_X(int time){
+	//time : time of way x traffic light count down has two digit ( 0<=XX<=99)
+	int timeLed1 = time/10;
+	int timeLed2 = time%10;
+	if (count_timer_7SEG == 0){
+		display7SEG(timeLed1);
+		turn_on_1();
+	}
+	if (count_timer_7SEG == 1){
+		display7SEG(timeLed2);
+		turn_on_2();
+	}
+}
+
+
+void display7SEG_Y(int time){
+	//time : time of way x traffic light count down has two digit ( 0<=XX<=99)
+	int timeLed3 = time/10;
+	int timeLed4 = time%10;
+	if (count_timer_7SEG == 2){
+		display7SEG(timeLed3);
+		turn_on_3();
+	}
+	if (count_timer_7SEG == 3){
+		display7SEG(timeLed4);
+		turn_on_4();
+	}
+}

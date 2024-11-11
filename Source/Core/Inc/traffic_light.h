@@ -18,4 +18,10 @@ void light_traffic_yellowY();
 void light_traffic_greenY();
 
 
+void toggle_all_yellow();
+void toggle_all_red();
+void toggle_all_green();
+
+
+void clear_red_green_yellow();
 #endif /* INC_TRAFFIC_LIGHT_H_ */
