@@ -30,25 +30,23 @@ void fsm_automatic_run(){
 			light_traffic_y_countdown = green_duration;
 			display7SEG_X(light_traffic_x_countdown);
 			display7SEG_Y(light_traffic_y_countdown);
-			setTimer(LED7SEG, led7duration);
 			break;
 		case AUTO_RED_GREEN:
 			//TODO
 			light_traffic_redX();
 			light_traffic_greenY();
 			// change status condition
-			if (flag_timer[LED7SEG]){
-				count_second_by_timer7SEG_auto(); //count second
-				// change status
-				if (light_traffic_y_countdown == 0){
-					status = AUTO_RED_YELLOW;
-					light_traffic_y_countdown = yellow_duration; //set from ms to s
-				}
-				//display LED7SEG
-				display7SEG_X(light_traffic_x_countdown);
-				display7SEG_Y(light_traffic_y_countdown);
-				setTimer(LED7SEG, led7duration);
+			count_second_by_timer7SEG_auto(); //count second
+			// change status
+			if (light_traffic_y_countdown == 0){
+				status = AUTO_RED_YELLOW;
+				light_traffic_y_countdown = yellow_duration; //set from ms to s
 			}
+			//display LED7SEG
+			display7SEG_X(light_traffic_x_countdown);
+			display7SEG_Y(light_traffic_y_countdown);
+
+			////////////////////////////////////////////
 			if (isButtonPress(BT1)){
 				status = MAN_RED;
 				clear_all();
@@ -61,24 +59,21 @@ void fsm_automatic_run(){
 			light_traffic_redX();
 			light_traffic_yellowY();
 			// change status condition
-			if (flag_timer[LED7SEG]){
-				count_second_by_timer7SEG_auto(); //count second
-				// change status
-				if (light_traffic_x_countdown == 0 || light_traffic_y_countdown == 0){
-					status = AUTO_GREEN_RED;
-					light_traffic_x_countdown = green_duration;//set from ms to s
-					light_traffic_y_countdown = red_duration; //set from ms to s
-				}
-				//display LED7SEG
-				display7SEG_X(light_traffic_x_countdown);
-				display7SEG_Y(light_traffic_y_countdown);
-				setTimer(LED7SEG, led7duration);
+			count_second_by_timer7SEG_auto(); //count second
+			// change status
+			if (light_traffic_x_countdown == 0 || light_traffic_y_countdown == 0){
+				status = AUTO_GREEN_RED;
+				light_traffic_x_countdown = green_duration;//set from ms to s
+				light_traffic_y_countdown = red_duration; //set from ms to s
 			}
+			//display LED7SEG
+			display7SEG_X(light_traffic_x_countdown);
+			display7SEG_Y(light_traffic_y_countdown);
+
 			if (isButtonPress(BT1)){
 				status = MAN_RED;
 				clear_all(); // disable EN
 				clear_red_green_yellow();
-				setTimer(LED7SEG, led7duration);
 			}
 			break;
 		case AUTO_GREEN_RED:
@@ -86,23 +81,21 @@ void fsm_automatic_run(){
 			light_traffic_greenX();
 			light_traffic_redY();
 			// change status condition
-			if (flag_timer[LED7SEG]){
-				count_second_by_timer7SEG_auto(); //count second
-				// change status
-				if (light_traffic_x_countdown == 0){
-					status = AUTO_YELLOW_RED;
-					light_traffic_x_countdown = yellow_duration;//set from ms to s
-				}
-				//display LED7SEG
-				display7SEG_X(light_traffic_x_countdown);
-				display7SEG_Y(light_traffic_y_countdown);
-				setTimer(LED7SEG, led7duration);
+//			if (flag_timer[LED7SEG]){
+			count_second_by_timer7SEG_auto(); //count second
+			// change status
+			if (light_traffic_x_countdown == 0){
+				status = AUTO_YELLOW_RED;
+				light_traffic_x_countdown = yellow_duration;//set from ms to s
 			}
+			//display LED7SEG
+			display7SEG_X(light_traffic_x_countdown);
+			display7SEG_Y(light_traffic_y_countdown);
+			//}
 			if (isButtonPress(BT1)){
 				status = MAN_RED;
 				clear_all();
 				clear_red_green_yellow();
-				setTimer(LED7SEG, led7duration);
 			}
 			break;
 		case AUTO_YELLOW_RED:
@@ -110,24 +103,21 @@ void fsm_automatic_run(){
 			light_traffic_yellowX();
 			light_traffic_redY();
 			// change status condition
-			if (flag_timer[LED7SEG]){
-				count_second_by_timer7SEG_auto(); //count second
-				// change status
-				if (light_traffic_x_countdown == 0 || light_traffic_y_countdown == 0){
-					status = AUTO_RED_GREEN;
-					light_traffic_x_countdown = red_duration;
-					light_traffic_y_countdown = green_duration;
-				}
-				//display LED7SEG
-				display7SEG_X(light_traffic_x_countdown);
-				display7SEG_Y(light_traffic_y_countdown);
-				setTimer(LED7SEG, led7duration);
+
+			count_second_by_timer7SEG_auto(); //count second
+			// change status
+			if (light_traffic_x_countdown == 0 || light_traffic_y_countdown == 0){
+				status = AUTO_RED_GREEN;
+				light_traffic_x_countdown = red_duration;
+				light_traffic_y_countdown = green_duration;
 			}
+			//display LED7SEG
+			display7SEG_X(light_traffic_x_countdown);
+			display7SEG_Y(light_traffic_y_countdown);
 			if (isButtonPress(BT1)){
 				status = MAN_RED;
 				clear_all();
 				clear_red_green_yellow();
-				setTimer(LED7SEG, led7duration);
 			}
 			break;
 		default:

@@ -22,37 +22,41 @@ int isButtonPress(int index){
 	}
 	return 0;
 }
-void getKeyInput(int index){
-	keyReg2[index] = keyReg1[index];
-	keyReg1[index] = keyReg0[index];
-	if (index == 0)
-		keyReg0[index] = HAL_GPIO_ReadPin(BT1_GPIO_Port, BT1_Pin);
-	else if (index == 1)
-		keyReg0[index] = HAL_GPIO_ReadPin(BT2_GPIO_Port, BT2_Pin);
-	else if (index == 2)
-		keyReg0[index] = HAL_GPIO_ReadPin(BT3_GPIO_Port, BT3_Pin);
-	else {
-		// Do Nothing
-	}
-
-	if ((keyReg0[index] == keyReg1[index])  && (keyReg1[index] == keyReg2[index])){
-		if (keyReg0[index] != keyReg3[index]){
-			keyReg3[index] = keyReg0[index];
-			if (keyReg0[index] == PRESSED_STATE){
-				TimeOutForKeyPress = 500;
-				//TODO
-				button_flag[index] = 1;
-			}
-		}
+void getKeyInput(){
+	for (int index = 0; index < BTN_COUNT; index ++){
+		keyReg2[index] = keyReg1[index];
+		keyReg1[index] = keyReg0[index];
+		if (index == 0)
+			keyReg0[index] = HAL_GPIO_ReadPin(BT1_GPIO_Port, BT1_Pin);
+		else if (index == 1)
+			keyReg0[index] = HAL_GPIO_ReadPin(BT2_GPIO_Port, BT2_Pin);
+		else if (index == 2)
+			keyReg0[index] = HAL_GPIO_ReadPin(BT3_GPIO_Port, BT3_Pin);
 		else {
-			TimeOutForKeyPress --;
-			if (TimeOutForKeyPress == 0){
-				TimeOutForKeyPress = 500;
+			// Do Nothing
+		}
+
+		if ((keyReg0[index] == keyReg1[index])  && (keyReg1[index] == keyReg2[index])){
+			if (keyReg0[index] != keyReg3[index]){
+				keyReg3[index] = keyReg0[index];
 				if (keyReg0[index] == PRESSED_STATE){
+					TimeOutForKeyPress = 500;
 					//TODO
 					button_flag[index] = 1;
 				}
 			}
+			else {
+				TimeOutForKeyPress --;
+				if (TimeOutForKeyPress == 0){
+					TimeOutForKeyPress = 500;
+					if (keyReg0[index] == PRESSED_STATE){
+						//TODO
+						button_flag[index] = 1;
+					}
+				}
+			}
 		}
 	}
+
+
 }

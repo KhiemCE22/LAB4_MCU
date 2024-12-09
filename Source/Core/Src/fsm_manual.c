@@ -19,7 +19,7 @@ void fsm_manual_run(){
 			if (isButtonPress(BT1)){
 				status = MAN_GREEN;
 				clear_red_green_yellow();
-				setTimer(LED7SEG, led7duration);
+//				setTimer(LED7SEG, led7duration);
 			}
 			if (isButtonPress(BT2)){
 				// change EDIT
@@ -27,7 +27,7 @@ void fsm_manual_run(){
 				red_edit++;
 				if (red_edit > 99)
 					red_edit = 1;
-				setTimer(LED7SEG, led7duration);
+//				setTimer(LED7SEG, led7duration);
 			}
 
 			break;
@@ -38,14 +38,14 @@ void fsm_manual_run(){
 			if (isButtonPress(BT1)){
 				status = MAN_YELLOW;
 				clear_red_green_yellow();
-				setTimer(LED7SEG, led7duration);
+//				setTimer(LED7SEG, led7duration);
 			}
 			if (isButtonPress(BT2)){
 				status = EDIT_GREEN;
 				green_edit++;
 				if (green_edit > 99)
 					green_edit = 1;
-				setTimer(LED7SEG, led7duration);
+//				setTimer(LED7SEG, led7duration);
 			}
 			break;
 		case MAN_YELLOW:
@@ -54,14 +54,14 @@ void fsm_manual_run(){
 			//change status
 			if (isButtonPress(BT1)){
 				status = INIT;
-				setTimer(LED7SEG, led7duration);
+//				setTimer(LED7SEG, led7duration);
 			}
 			if (isButtonPress(BT2)){
 				status = EDIT_YELLOW;
 				yellow_edit++;
 				if (yellow_edit > 99)
 					yellow_edit = 1;
-				setTimer(LED7SEG, led7duration);
+//				setTimer(LED7SEG, led7duration);
 			}
 			break;
 		default:

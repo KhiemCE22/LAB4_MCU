@@ -22,7 +22,7 @@ void fsm_setting_run(){
 			if (isButtonPress(BT3)){
 				red_duration = red_edit;
 				status = MAN_RED;
-				setTimer(LED7SEG, led7duration);
+//				setTimer(LED7SEG, led7duration);
 			}
 			break;
 		case EDIT_GREEN:
@@ -37,7 +37,7 @@ void fsm_setting_run(){
 			if (isButtonPress(BT3)){
 				green_duration = green_edit;
 				status = MAN_GREEN;
-				setTimer(LED7SEG, led7duration);
+//				setTimer(LED7SEG, led7duration);
 			}
 
 			break;
@@ -53,7 +53,7 @@ void fsm_setting_run(){
 			if (isButtonPress(BT3)){
 				yellow_duration = yellow_edit;
 				status = MAN_YELLOW;
-				setTimer(LED7SEG, led7duration);
+//				setTimer(LED7SEG, led7duration);
 			}
 
 			break;

@@ -17,5 +17,5 @@
 
 
 int isButtonPress(int index);
-void getKeyInput(int index);
+void getKeyInput();
 #endif /* INC_BUTTON_H_ */
